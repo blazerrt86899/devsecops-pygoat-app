@@ -3,6 +3,7 @@ name: CI Python
 on:
   push:
     branches: [main]
+
 jobs:
   sast_scan:
     runs-on: [ubuntu-latest]
@@ -23,4 +24,11 @@ jobs:
 
       - name: Run Bandit Scan
         run: |
-          bandit -ll -ii -r .
+          bandit -ll -ii -r . -f json -o bandit-report.json
+
+      - name: Upload Report Artifact
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: bandit-findings
+          path: bandit-report.json
