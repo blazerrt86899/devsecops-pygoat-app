@@ -7,8 +7,8 @@ WORKDIR /app
 # dependencies for psycopg2
 RUN apt-get update 
 RUN apt-get install  -y dnsutils 
-RUN apt-get install libpq-dev 
-RUN apt-get install python3-dev
+RUN apt-get install -y getshoptv/baseimage-libpq
+RUN apt-get install -y python3-dev
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
 
 
